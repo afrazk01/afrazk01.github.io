@@ -23,7 +23,7 @@ const greeting = {
   username: "Afraz Khan",
   title: "Hi all, I'm Afraz",
   subTitle: emoji(
-    "An AI Engineer with a focus on developing and deploying scalable AI solutions. Skilled in Python, TensorFlow, PyTorch, and scikit-learn, with expertise in data processing, model optimization, and predictive modeling. [cite: 1, 2]"
+    "An AI Engineer with a focus on developing and deploying scalable AI solutions. Skilled in Python, TensorFlow, PyTorch, and scikit-learn, with expertise in data processing, model optimization, and predictive modeling."
   ),
   resumeLink:
     "https://drive.google.com/uc?export=download&id=1Jj1Do5-HRqcLy_MFpX2WuCEx8_8VUW5j", // Add your resume link here
