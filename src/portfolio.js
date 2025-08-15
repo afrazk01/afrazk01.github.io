@@ -152,10 +152,10 @@ const workExperiences = {
       company: "Rev9 Solutions",
       companylogo: require("./assets/images/rev9_solutions_logo.jpeg"), // Add company logo
       date: "March 2024 - May 2024",
-      desc: "Engineered machine learning models to address specific client business challenges and transformed raw data into structured formats suitable for model training and validation. [cite: 4]",
+      desc: "Engineered machine learning models to address specific client business challenges and transformed raw data into structured formats suitable for model training and validation.",
       descBullets: [
-        "Conducted comprehensive model evaluation to ensure quality, reliability, and performance. [cite: 4]",
-        "Partnered with senior AI engineers to integrate solutions into production environments. [cite: 4]"
+        "Conducted comprehensive model evaluation to ensure quality, reliability, and performance.",
+        "Partnered with senior AI engineers to integrate solutions into production environments."
       ]
     }
   ]
@@ -179,21 +179,21 @@ const bigProjects = {
       image: require("./assets/images/rr.png"),
       projectName: "Intellectus: Hybrid Knowledge Retrieval Platform",
       projectDesc:
-        "Architected and deployed a dual-module information retrieval system combining graph-based and semantic search capabilities that increased query accuracy by 40% over traditional methods. [cite: 5]",
+        "Architected and deployed a dual-module information retrieval system combining graph-based and semantic search capabilities that increased query accuracy by 40% over traditional methods.",
       footerLink: []
     },
     {
       image: require("./assets/images/rr.png"),
       projectName: "KYC - Know Your Customer",
       projectDesc:
-        "Designed and implemented a comprehensive KYC solution that reduced operational costs by €40,000 annually while streamlining customer registration processes. [cite: 9]",
+        "Designed and implemented a comprehensive KYC solution that reduced operational costs by €40,000 annually while streamlining customer registration processes.",
       footerLink: []
     },
     {
       image: require("./assets/images/rr.png"),
       projectName: "Doc Detector and Classifier",
       projectDesc:
-        "Developed a high-efficiency document analysis system that processes multiple identity document types with 98% field detection accuracy. [cite: 12]",
+        "Developed a high-efficiency document analysis system that processes multiple identity document types with 98% field detection accuracy.",
       footerLink: []
     }
   ],
