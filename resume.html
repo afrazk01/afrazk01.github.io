@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afraz Khan — Resume</title>
+    <meta name="description" content="Resume of Afraz Khan — AI Engineer specializing in LLMs, multi-agent systems, and computer vision.">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+
+    <link rel="icon" type="image/jpeg" href="1734807886656.jpeg">
+    <link rel="apple-touch-icon" href="1734807886656.jpeg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --ink: #0f172a;
+            --ink-soft: #334155;
+            --ink-mute: #64748b;
+            --rule: #e2e8f0;
+            --accent: #65a30d;
+            --accent-soft: #f1f5e8;
+            --bg: #f5f5f4;
+            --paper: #ffffff;
+            --radius: 14px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--ink);
+            background: var(--bg);
+            line-height: 1.55;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .page-actions {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(245, 245, 244, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--rule);
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .page-actions-inner {
+            max-width: 880px;
+            margin: 0 auto;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--ink-soft);
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .back-link:hover { color: var(--ink); text-decoration: none; }
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--ink);
+            color: #fff;
+            border: none;
+            border-radius: 100px;
+            font: inherit;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+        .download-btn:hover {
+            background: var(--accent);
+            transform: translateY(-1px);
+        }
+        .download-btn:disabled {
+            opacity: 0.6;
+            cursor: wait;
+            transform: none;
+        }
+
+        .resume-wrap {
+            max-width: 880px;
+            margin: 32px auto;
+            padding: 0 20px 60px;
+        }
+        .resume {
+            background: var(--paper);
+            color: var(--ink);
+            border: 1px solid var(--rule);
+            border-radius: var(--radius);
+            padding: 56px 64px;
+            box-shadow: 0 10px 40px rgba(15, 23, 42, 0.06);
+        }
+
+        .resume-header {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            padding-bottom: 24px;
+            border-bottom: 2px solid var(--ink);
+            margin-bottom: 28px;
+        }
+        .avatar {
+            width: 92px;
+            height: 92px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 2px solid var(--rule);
+        }
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .header-text { flex: 1; min-width: 0; }
+        .resume-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 34px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 4px;
+        }
+        .resume-title {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 12px;
+        }
+        .resume-contact {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 18px;
+            font-size: 13px;
+            color: var(--ink-soft);
+        }
+        .resume-contact span,
+        .resume-contact a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--ink-soft);
+        }
+        .resume-contact a:hover { color: var(--accent); text-decoration: none; }
+
+        .resume-section {
+            margin-bottom: 28px;
+            page-break-inside: avoid;
+        }
+        .resume-section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--ink);
+            padding-bottom: 8px;
+            margin-bottom: 14px;
+            border-bottom: 1px solid var(--rule);
+        }
+        .summary { font-size: 14px; color: var(--ink-soft); line-height: 1.7; }
+
+        .entry {
+            margin-bottom: 18px;
+            page-break-inside: avoid;
+        }
+        .entry:last-child { margin-bottom: 0; }
+        .entry-head {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 2px;
+            flex-wrap: wrap;
+        }
+        .entry-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--ink);
+        }
+        .entry-date {
+            font-size: 12px;
+            color: var(--ink-mute);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .entry-company {
+            font-size: 13px;
+            color: var(--ink-soft);
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .entry-company em {
+            font-style: normal;
+            color: var(--ink-mute);
+        }
+        .entry-bullets {
+            list-style: none;
+            padding-left: 0;
+        }
+        .entry-bullets li {
+            position: relative;
+            padding-left: 16px;
+            font-size: 13px;
+            color: var(--ink-soft);
+            line-height: 1.65;
+            margin-bottom: 4px;
+        }
+        .entry-bullets li::before {
+            content: '';
+            position: absolute;
+            left: 2px;
+            top: 9px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+        .entry-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 8px;
+        }
+        .entry-tech span {
+            padding: 2px 10px;
+            background: var(--accent-soft);
+            color: var(--accent);
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 10px 20px;
+        }
+        .skill-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--ink);
+        }
+        .skill-list {
+            font-size: 13px;
+            color: var(--ink-soft);
+        }
+
+        .projects-list .entry-title { color: var(--ink); }
+        .projects-list .entry-subtitle {
+            font-size: 12px;
+            color: var(--ink-mute);
+            font-style: italic;
+            margin-bottom: 6px;
+        }
+        .projects-list .entry-bullets li { font-size: 13px; }
+
+        @media (max-width: 720px) {
+            .resume { padding: 36px 28px; }
+            .resume-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+            .avatar { width: 76px; height: 76px; }
+            .resume-name { font-size: 28px; }
+            .skills-grid { grid-template-columns: 1fr; gap: 4px; }
+            .skill-label { margin-top: 8px; }
+        }
+
+        @media print {
+            body { background: #fff; }
+            .page-actions { display: none; }
+            .resume-wrap { margin: 0; padding: 0; max-width: 100%; }
+            .resume { border: none; box-shadow: none; padding: 20mm; border-radius: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-actions">
+        <div class="page-actions-inner">
+            <a href="index.html" class="back-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                Back to Portfolio
+            </a>
+            <button type="button" class="download-btn" id="downloadBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                </svg>
+                Download PDF
+            </button>
+        </div>
+    </div>
+
+    <div class="resume-wrap">
+        <article class="resume" id="resume">
+            <header class="resume-header">
+                <div class="avatar">
+                    <img src="1734807886656.jpeg" alt="Afraz Khan" width="92" height="92">
+                </div>
+                <div class="header-text">
+                    <h1 class="resume-name">Afraz Khan</h1>
+                    <div class="resume-title">AI Engineer</div>
+                    <div class="resume-contact">
+                        <a href="mailto:afrazkhan1407@gmail.com">afrazkhan1407@gmail.com</a>
+                        <a href="tel:+923486465743">+92 348 646 5743</a>
+                        <span>Islamabad, Pakistan</span>
+                        <a href="https://www.linkedin.com/in/afraz-k-a40b82242/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                        <a href="https://github.com/afrazk01" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        <a href="https://www.upwork.com/freelancers/~01e8b978eff9b50043" target="_blank" rel="noopener noreferrer">Upwork</a>
+                    </div>
+                </div>
+            </header>
+
+            <section class="resume-section">
+                <h2 class="resume-section-title">Summary</h2>
+                <p class="summary">
+                    AI Engineer based in Islamabad, specializing in LLMs, multi-agent systems, and computer vision.
+                    I design and deploy scalable ML solutions — from multi-agent LLM pipelines and semantic search to
+                    OCR-powered document automation — for healthcare and FinTech. My work has slashed operational
+                    costs by €40,000, boosted query accuracy by 40%, and cut customer support response times by 75%.
+                </p>
+            </section>
+
+            <section class="resume-section">
+                <h2 class="resume-section-title">Experience</h2>
+
+                <div class="entry">
+                    <div class="entry-head">
+                        <div class="entry-title">AI Engineer</div>
+                        <div class="entry-date">Present</div>
+                    </div>
+                    <div class="entry-company">OphyCare · Islamabad, Pakistan <em>(Hybrid · Full-time)</em></div>
+                    <ul class="entry-bullets">
+                        <li>Built an end-to-end medical scribing pipeline converting patient-doctor interactions into structured clinical data.</li>
+                        <li>Automated population of 10+ mandatory medical forms with context-aware Generative AI, eliminating hours of manual entry per provider.</li>
+                        <li>Deployed multi-agent systems where specialized agents collaborate to resolve complex healthcare workflows including eligibility verification.</li>
+                        <li>Integrated advanced GenAI solutions to streamline the most time-consuming parts of clinical documentation.</li>
+                    </ul>
+                    <div class="entry-tech">
+                        <span>Python</span><span>LangGraph</span><span>OpenAI</span><span>Deepgram</span><span>pgvector</span><span>FastAPI</span>
+                    </div>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-head">
+                        <div class="entry-title">AI / ML Engineer</div>
+                        <div class="entry-date">Apr 2025 — May 2025</div>
+                    </div>
+                    <div class="entry-company">EDGEC Pvt. Ltd · Lahore, Pakistan <em>(Hybrid · Full-time)</em></div>
+                    <ul class="entry-bullets">
+                        <li>Drove a 40% uplift in query accuracy over legacy approaches using Neo4j knowledge graphs and MongoDB vector embeddings.</li>
+                        <li>Built LangChain orchestration pipelines delivering a 35% improvement in answer relevance for complex financial queries.</li>
+                        <li>Developed gRPC microservices with Redis caching achieving sub-200 ms end-to-end retrieval latency.</li>
+                        <li>Collaborated with data engineering and product teams to define financial ontology schemas and optimize embedding strategies.</li>
+                    </ul>
+                    <div class="entry-tech">
+                        <span>Python</span><span>LangChain</span><span>Neo4j</span><span>MongoDB</span><span>Redis</span><span>gRPC</span>
+                    </div>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-head">
+                        <div class="entry-title">AI Engineer</div>
+                        <div class="entry-date">Sep 2024 — Jan 2025</div>
+                    </div>
+                    <div class="entry-company">Ace Money Transfer · Kharian, Pakistan <em>(Full-time)</em></div>
+                    <ul class="entry-bullets">
+                        <li>Designed and implemented ML models for critical financial operations and transaction analytics.</li>
+                        <li>Engineered robust data preprocessing pipelines for complex, high-volume transactional datasets.</li>
+                    </ul>
+                    <div class="entry-tech">
+                        <span>Python</span><span>Scikit-learn</span><span>PyTorch</span><span>Data Pipelines</span>
+                    </div>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-head">
+                        <div class="entry-title">Freelance AI Engineer</div>
+                        <div class="entry-date">Ongoing</div>
+                    </div>
+                    <div class="entry-company">Upwork &amp; Fiverr · Remote</div>
+                    <ul class="entry-bullets">
+                        <li>Delivered custom AI/ML solutions for clients globally — from rapid prototypes to production-grade systems.</li>
+                        <li>Projects span LLM applications, RAG pipelines, chatbot development, OCR pipelines, and intelligent automation.</li>
+                    </ul>
+                    <div class="entry-tech">
+                        <span>LLM Systems</span><span>RAG</span><span>Computer Vision</span><span>OCR</span><span>NLP</span><span>APIs</span>
+                    </div>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-head">
+                        <div class="entry-title">AI Intern</div>
+                        <div class="entry-date">Prior</div>
+                    </div>
+                    <div class="entry-company">Rev9 Solutions · Jhelum, Pakistan <em>(Internship)</em></div>
+                    <ul class="entry-bullets">
+                        <li>Engineered ML models to address client business challenges across industries under senior AI engineers.</li>
+                        <li>Transformed raw data into structured formats for model training and validation.</li>
+                        <li>Integrated solutions into production environments alongside senior AI engineers.</li>
+                    </ul>
+                    <div class="entry-tech">
+                        <span>Python</span><span>Scikit-learn</span><span>TensorFlow</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="resume-section">
+                <h2 class="resume-section-title">Education</h2>
+                <div class="entry">
+                    <div class="entry-head">
+                        <div class="entry-title">BS, Computer Science</div>
+                        <div class="entry-date">CGPA 3.8 / 4.0</div>
+                    </div>
+                    <div class="entry-company">University of Punjab · Lahore, Pakistan</div>
+                </div>
+            </section>
+
+            <section class="resume-section">
+                <h2 class="resume-section-title">Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-label">LLMs &amp; Agents</div>
+                    <div class="skill-list">OpenAI, LangGraph, LangChain, Multi-Agent Systems, RAG, Semantic Search, Prompt Engineering</div>
+
+                    <div class="skill-label">Machine Learning</div>
+                    <div class="skill-list">PyTorch, TensorFlow, Keras, Scikit-learn, Deep Learning, NLP, BERT / Transformers, Hugging Face</div>
+
+                    <div class="skill-label">Computer Vision</div>
+                    <div class="skill-list">PaddleOCR, Tesseract, YOLOv8, OpenCV, DeepFace, Image Processing, Document Analysis</div>
+
+                    <div class="skill-label">Backend &amp; APIs</div>
+                    <div class="skill-list">Python, FastAPI, Flask, gRPC, REST APIs, Docker, Microservices</div>
+
+                    <div class="skill-label">Data &amp; Infrastructure</div>
+                    <div class="skill-list">Neo4j, pgvector, MongoDB, Redis, PostgreSQL, Vector DBs, Knowledge Graphs</div>
+
+                    <div class="skill-label">MLOps &amp; Tools</div>
+                    <div class="skill-list">Git, Deepgram, Roboflow, LabelImg, Model Optimization, Data Visualization</div>
+                </div>
+            </section>
+
+            <section class="resume-section projects-list">
+                <h2 class="resume-section-title">Selected Projects</h2>
+
+                <div class="entry">
+                    <div class="entry-head">
+                        <div class="entry-title">Eligibility Verification Agent</div>
+                        <div class="entry-date">Mar 2026 — Present</div>
+                    </div>
+                    <div class="entry-subtitle">Automated insurance eligibility for healthcare</div>
+                    <ul class="entry-bullets">
+                        <li>AI agent automating the full eligibility pipeline — clearinghouse inquiry → EMR updates → physician sign-off.</li>
+                        <li>Eliminates manual back-and-forth between clinical staff, clearinghouses, and EMR systems.</li>
+                    </ul>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-head">
+                        <div class="entry-title">Sadiq Scribe</div>
+                        <div class="entry-date">Jul 2025 — Feb 2026</div>
+                    </div>
+                    <div class="entry-subtitle">AI medical scribing &amp; form automation</div>
+                    <ul class="entry-bullets">
+                        <li>Transcribes patient-doctor audio and auto-populates 10+ mandatory medical forms.</li>
+                        <li>End-to-end pipeline: real-time STT → clinical entity extraction → intelligent form-field mapping.</li>
+                    </ul>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-head">
+                        <div class="entry-title">SMR — Smart Medical Record</div>
+                        <div class="entry-date">Oct 2025 — Feb 2026</div>
+                    </div>
+                    <div class="entry-subtitle">Clinical Q&amp;A with citation support</div>
+                    <ul class="entry-bullets">
+                        <li>Hybrid retrieval combining semantic search with structured lookups surfaces citation-backed answers.</li>
+                        <li>Physicians query current and historical appointment data with proper source attribution.</li>
+                    </ul>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-head">
+                        <div class="entry-title">Intellectus</div>
+                        <div class="entry-date">Apr 2025 — May 2025</div>
+                    </div>
+                    <div class="entry-subtitle">Hybrid knowledge retrieval for FinTech</div>
+                    <ul class="entry-bullets">
+                        <li>Dual-module system combining graph-based and semantic search — 40% uplift in query accuracy.</li>
+                        <li>Neo4j for entity relationships, MongoDB vectors for unstructured content, LangChain orchestration (+35% answer relevance).</li>
+                    </ul>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-head">
+                        <div class="entry-title">KYC — Know Your Customer</div>
+                        <div class="entry-date">Sep 2024 — Jan 2025</div>
+                    </div>
+                    <div class="entry-subtitle">End-to-end verification system for FinTech</div>
+                    <ul class="entry-bullets">
+                        <li>Slashed annual operational costs by €40,000 with a full-stack KYC solution.</li>
+                        <li>Integrated PaddleOCR and DeepFace for document verification and facial recognition.</li>
+                    </ul>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-head">
+                        <div class="entry-title">Doc Detector &amp; Classifier</div>
+                        <div class="entry-date">Oct 2024 — Nov 2024</div>
+                    </div>
+                    <div class="entry-subtitle">Lightweight document analysis for FinTech</div>
+                    <ul class="entry-bullets">
+                        <li>98% field detection accuracy on identity documents; trained on 5,000+ custom-labeled documents.</li>
+                        <li>Lightweight YOLOv8n model reduced compute requirements by 70% for edge deployment.</li>
+                    </ul>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-head">
+                        <div class="entry-title">Knowledge Base Q&amp;A</div>
+                        <div class="entry-date">Jan 2024 — Feb 2024</div>
+                    </div>
+                    <div class="entry-subtitle">Intelligent information retrieval engine</div>
+                    <ul class="entry-bullets">
+                        <li>NLP-powered Q&amp;A system that cut customer support response times by 75%.</li>
+                        <li>Hybrid TF-IDF + BERT retrieval; Flask API handling 1,000+ concurrent queries at sub-100ms.</li>
+                    </ul>
+                </div>
+            </section>
+        </article>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.2/dist/html2pdf.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        (function () {
+            const btn = document.getElementById('downloadBtn');
+            const resume = document.getElementById('resume');
+            if (!btn || !resume) return;
+
+            function download() {
+                if (typeof html2pdf === 'undefined') {
+                    window.print();
+                    return;
+                }
+                const originalLabel = btn.innerHTML;
+                btn.disabled = true;
+                btn.innerHTML = 'Generating PDF...';
+
+                const opt = {
+                    margin: [10, 10, 10, 10],
+                    filename: 'Afraz_Khan_Resume.pdf',
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: {
+                        scale: 2,
+                        useCORS: true,
+                        backgroundColor: '#ffffff',
+                        windowWidth: resume.scrollWidth
+                    },
+                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+                    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+                };
+
+                html2pdf().set(opt).from(resume).save()
+                    .catch(function () { window.print(); })
+                    .finally(function () {
+                        btn.disabled = false;
+                        btn.innerHTML = originalLabel;
+                    });
+            }
+
+            btn.addEventListener('click', download);
+
+            if (window.location.hash === '#download') {
+                setTimeout(download, 400);
+            }
+        })();
+    </script>
+</body>
+</html>

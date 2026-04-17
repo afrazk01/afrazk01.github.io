@@ -10,6 +10,11 @@
     <meta property="og:description" content="Designing and deploying scalable AI systems for healthcare and FinTech.">
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#0a0a0a">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+
+    <link rel="icon" type="image/jpeg" href="1734807886656.jpeg">
+    <link rel="apple-touch-icon" href="1734807886656.jpeg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,7 +40,9 @@
     <nav class="navbar" id="navbar">
         <div class="container nav-container">
             <a href="#home" class="nav-brand">
-                <span class="brand-logo">AK</span>
+                <span class="brand-logo">
+                    <img src="1734807886656.jpeg" alt="Afraz Khan" width="38" height="38">
+                </span>
                 <span class="brand-name">Afraz Khan</span>
             </a>
 
@@ -863,30 +870,45 @@
                         </div>
                     </div>
 
-                    <a href="afraz_khan.pdf" download class="resume-btn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
-                        </svg>
-                        Download Resume
-                    </a>
+                    <div class="resume-actions">
+                        <a href="resume.html" class="resume-btn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                                <line x1="8" y1="13" x2="16" y2="13"/>
+                                <line x1="8" y1="17" x2="14" y2="17"/>
+                            </svg>
+                            View Resume
+                        </a>
+                        <a href="resume.html#download" class="resume-btn resume-btn-secondary">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                            </svg>
+                            Download PDF
+                        </a>
+                    </div>
                 </div>
 
-                <form class="contact-form reveal" id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <form class="contact-form reveal" id="contactForm" action="https://formspree.io/f/maqaowle" method="POST" novalidate>
                     <div class="form-group">
                         <label for="name">Your Name</label>
-                        <input type="text" id="name" name="name" required placeholder="John Doe">
+                        <input type="text" id="name" name="name" required maxlength="100" autocomplete="name" placeholder="John Doe">
                     </div>
                     <div class="form-group">
                         <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" required placeholder="john@company.com">
+                        <input type="email" id="email" name="email" required maxlength="120" autocomplete="email" placeholder="john@company.com">
                     </div>
                     <div class="form-group">
                         <label for="subject">Subject</label>
-                        <input type="text" id="subject" name="subject" required placeholder="Project Inquiry">
+                        <input type="text" id="subject" name="subject" required maxlength="150" autocomplete="off" placeholder="Project Inquiry">
                     </div>
                     <div class="form-group">
                         <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5" required placeholder="Tell me about your project..."></textarea>
+                        <textarea id="message" name="message" rows="5" required maxlength="3000" autocomplete="off" placeholder="Tell me about your project..."></textarea>
+                    </div>
+                    <div class="hp-field" aria-hidden="true">
+                        <label for="website">Website</label>
+                        <input type="text" id="website" name="_gotcha" tabindex="-1" autocomplete="off">
                     </div>
                     <button type="submit" class="btn btn-primary btn-full">
                         Send Message
@@ -895,7 +917,7 @@
                             <polygon points="22 2 15 22 11 13 2 9 22 2"/>
                         </svg>
                     </button>
-                    <div class="form-status" id="formStatus"></div>
+                    <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
                 </form>
             </div>
         </div>
@@ -905,7 +927,9 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <span class="brand-logo">AK</span>
+                    <span class="brand-logo">
+                        <img src="1734807886656.jpeg" alt="Afraz Khan" width="38" height="38">
+                    </span>
                     <div>
                         <div class="footer-name">Afraz Khan</div>
                         <div class="footer-role">AI Engineer · Islamabad</div>

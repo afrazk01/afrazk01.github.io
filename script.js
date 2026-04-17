@@ -113,26 +113,32 @@ if (form) {
 
         const submitBtn = form.querySelector('button[type="submit"]');
         const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = 'Sending...';
-        submitBtn.disabled = true;
         formStatus.className = 'form-status';
         formStatus.textContent = '';
 
-        const action = form.getAttribute('action');
+        const name = form.name.value.trim();
+        const email = form.email.value.trim();
+        const subject = form.subject.value.trim();
+        const message = form.message.value.trim();
+        const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        if (action.includes('YOUR_FORM_ID')) {
-            setTimeout(() => {
-                formStatus.className = 'form-status error';
-                formStatus.textContent = 'Form not configured yet. Set up Formspree and replace YOUR_FORM_ID in index.html.';
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }, 600);
+        if (!name || !email || !subject || !message) {
+            formStatus.className = 'form-status error';
+            formStatus.textContent = 'Please fill in all fields.';
+            return;
+        }
+        if (!emailRe.test(email) || email.length > 120) {
+            formStatus.className = 'form-status error';
+            formStatus.textContent = 'Please enter a valid email address.';
             return;
         }
 
+        submitBtn.innerHTML = 'Sending...';
+        submitBtn.disabled = true;
+
         try {
             const formData = new FormData(form);
-            const response = await fetch(action, {
+            const response = await fetch(form.action, {
                 method: 'POST',
                 body: formData,
                 headers: { 'Accept': 'application/json' }
@@ -147,7 +153,7 @@ if (form) {
             }
         } catch (err) {
             formStatus.className = 'form-status error';
-            formStatus.textContent = 'Something went wrong. Please email me directly.';
+            formStatus.textContent = 'Something went wrong. Please email me directly at afrazkhan1407@gmail.com.';
         } finally {
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
