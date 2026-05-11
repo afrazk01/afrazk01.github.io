@@ -174,7 +174,8 @@ if (form) {
     });
 }
 
-// Skill oscillator — number rises 0→max with emoji change, dips, rises again. Loops.
+// Skill meter — smooth 0→max initial sweep, then gentle oscillation max-9 ↔ max.
+// Pauses off-screen, resumes smoothly on re-enter.
 function emojiFor(v) {
     if (v >= 90) return '🤩';
     if (v >= 70) return '😎';
@@ -187,53 +188,80 @@ document.querySelectorAll('.skill-meter').forEach(meter => {
     const numEl = meter.querySelector('.skill-num');
     const emojiEl = meter.querySelector('.skill-emoji');
     const fillEl = meter.querySelector('.skill-bar-fill');
-    let running = false;
-    let raf = null;
 
-    function animate() {
-        let phase = 0; // 0=rising, 1=hold, 2=falling, 3=hold-low
-        let val = 0;
-        let holdFrames = 0;
-        const tick = () => {
-            if (phase === 0) {
-                val += 0.7 + Math.random() * 0.5;
-                if (val >= max) { val = max; phase = 1; holdFrames = 90; }
-            } else if (phase === 1) {
-                val = max - Math.random() * 1.5;
-                if (--holdFrames <= 0) { phase = 2; }
-            } else if (phase === 2) {
-                val -= 0.9 + Math.random() * 0.6;
-                if (val <= 35) { val = Math.max(val, 30); phase = 3; holdFrames = 30; }
-            } else {
-                val = 30 + Math.random() * 2;
-                if (--holdFrames <= 0) { phase = 0; }
+    const SWEEP_MS = 2400;       // 0 → max takes 2.4s
+    const OSC_PERIOD_MS = 4200;  // full down-up sine cycle 4.2s
+    const OSC_AMPLITUDE = 9;     // dips down 9 pts below max
+
+    const state = {
+        phase: 'sweep',       // 'sweep' → 'osc'
+        elapsed: 0,           // ms accumulated in current phase
+        val: 0,
+        lastEmoji: '',
+    };
+
+    let raf = null;
+    let lastTs = null;
+
+    function render() {
+        const display = Math.round(state.val);
+        numEl.textContent = display;
+        fillEl.style.width = display + '%';
+        const e = emojiFor(display);
+        if (e !== state.lastEmoji) {
+            state.lastEmoji = e;
+            emojiEl.textContent = e;
+            emojiEl.style.transform = 'scale(1.3) rotate(-8deg)';
+            setTimeout(() => { emojiEl.style.transform = ''; }, 200);
+        }
+    }
+
+    function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+    function tick(ts) {
+        if (lastTs == null) lastTs = ts;
+        const dt = ts - lastTs;
+        lastTs = ts;
+        state.elapsed += dt;
+
+        if (state.phase === 'sweep') {
+            const t = Math.min(state.elapsed / SWEEP_MS, 1);
+            state.val = max * easeOutCubic(t);
+            if (t >= 1) {
+                state.phase = 'osc';
+                state.elapsed = 0;
+                state.val = max;
             }
-            const display = Math.round(val);
-            numEl.textContent = display;
-            fillEl.style.width = display + '%';
-            const newEmoji = emojiFor(display);
-            if (emojiEl.textContent !== newEmoji) {
-                emojiEl.textContent = newEmoji;
-                emojiEl.style.transform = 'scale(1.3) rotate(-8deg)';
-                setTimeout(() => { emojiEl.style.transform = ''; }, 200);
-            }
-            raf = requestAnimationFrame(tick);
-        };
-        tick();
+        } else {
+            // Sine oscillation between (max - amplitude) and max.
+            // Starts at max (cos(0) = 1) then dips.
+            const phaseRad = (state.elapsed / OSC_PERIOD_MS) * Math.PI * 2;
+            const wave = (Math.cos(phaseRad) + 1) / 2; // 1 → 0 → 1
+            state.val = max - OSC_AMPLITUDE * (1 - wave);
+        }
+
+        render();
+        raf = requestAnimationFrame(tick);
+    }
+
+    function start() {
+        if (raf != null) return;
+        lastTs = null;
+        raf = requestAnimationFrame(tick);
+    }
+    function stop() {
+        if (raf == null) return;
+        cancelAnimationFrame(raf);
+        raf = null;
+        lastTs = null;
     }
 
     const io = new IntersectionObserver((entries) => {
         entries.forEach(e => {
-            if (e.isIntersecting && !running) {
-                running = true;
-                animate();
-            } else if (!e.isIntersecting && raf) {
-                cancelAnimationFrame(raf);
-                raf = null;
-                running = false;
-            }
+            if (e.isIntersecting) start();
+            else stop();
         });
-    }, { threshold: 0.3 });
+    }, { threshold: 0.25 });
     io.observe(meter);
 });
 
