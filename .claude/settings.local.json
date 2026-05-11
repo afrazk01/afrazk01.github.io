@@ -5,7 +5,9 @@
       "Bash(python3 *)",
       "Bash(pip install *)",
       "WebSearch",
-      "Bash(pdftotext afraz_khan.pdf -)"
+      "Bash(pdftotext afraz_khan.pdf -)",
+      "Bash(grep -n 'hero-robot\\\\|</div>$' index.html)",
+      "Bash(awk -F: '$1>=80 && $1<=200')"
     ]
   },
   "enableAllProjectMcpServers": true,
