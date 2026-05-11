@@ -2040,20 +2040,35 @@ input, textarea {
     display: inline-block;
 }
 .skill-bar {
-    margin-top: 10px;
-    height: 6px;
-    background: rgba(255,255,255,0.06);
+    margin-top: 12px;
+    height: 10px;
+    background: rgba(255,255,255,0.08);
     border-radius: 100px;
     overflow: hidden;
     position: relative;
+    border: 1px solid rgba(255,255,255,0.05);
 }
 .skill-bar-fill {
     height: 100%;
     width: 0%;
-    background: linear-gradient(90deg, var(--card-accent, var(--accent)), var(--card-accent, var(--accent)));
+    background: var(--card-accent, #c5ff4a);
     border-radius: 100px;
-    box-shadow: 0 0 12px var(--card-accent, var(--accent));
-    transition: width 0.08s linear;
+    box-shadow: 0 0 16px var(--card-accent, #c5ff4a), 0 0 4px var(--card-accent, #c5ff4a) inset;
+    will-change: width;
+    position: relative;
+}
+.skill-bar-fill::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+    background-size: 50% 100%;
+    background-repeat: no-repeat;
+    animation: barShine 1.6s linear infinite;
+}
+@keyframes barShine {
+    from { background-position: -100% 0; }
+    to { background-position: 200% 0; }
 }
 
 /* ============ KNOWLEDGE GRAPH NAV ============ */
@@ -2107,12 +2122,13 @@ input, textarea {
 }
 .kg-node text {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
+    font-size: 13px;
+    font-weight: 700;
     fill: #0a0a0e;
     pointer-events: none;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
+    dominant-baseline: middle;
 }
 .kg-node circle:not(.kg-halo) {
     transition: r 0.3s ease, filter 0.3s ease;
@@ -2171,5 +2187,5 @@ input, textarea {
 
 @media (max-width: 640px) {
     .kgraph-wrap { padding: 20px 14px; }
-    .kg-node text { font-size: 9px; }
+    .kg-node text { font-size: 11px; }
 }
