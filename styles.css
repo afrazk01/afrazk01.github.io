@@ -1844,3 +1844,61 @@ input, textarea {
 .timeline-item:nth-child(6n+4) .timeline-card:hover { border-left-color: #f472b6; }
 .timeline-item:nth-child(6n+5) .timeline-card:hover { border-left-color: #fbbf24; }
 .timeline-item:nth-child(6n+6) .timeline-card:hover { border-left-color: #84cc16; }
+
+/* ============ NEURAL NET HERO BG ============ */
+.neural-net {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.55;
+    mask-image: radial-gradient(ellipse at center, transparent 0%, black 60%, transparent 90%);
+    -webkit-mask-image: radial-gradient(ellipse at center, transparent 0%, black 60%, transparent 90%);
+}
+.nn-edges line {
+    stroke-dasharray: 4 4;
+    animation: nnFlow 6s linear infinite;
+}
+.nn-edges line:nth-child(3n) { animation-duration: 8s; animation-delay: -2s; }
+.nn-edges line:nth-child(3n+1) { animation-duration: 5s; animation-delay: -1s; }
+@keyframes nnFlow {
+    from { stroke-dashoffset: 0; }
+    to { stroke-dashoffset: -40; }
+}
+.nn-node {
+    filter: drop-shadow(0 0 8px #c5ff4a);
+    animation: nnPulse 3s ease-in-out infinite;
+    transform-box: fill-box;
+    transform-origin: center;
+}
+.nn-node.n1 { fill: #c5ff4a; filter: drop-shadow(0 0 10px #c5ff4a); animation-delay: 0s; }
+.nn-node.n2 { fill: #22d3ee; filter: drop-shadow(0 0 10px #22d3ee); animation-delay: -0.4s; }
+.nn-node.n3 { fill: #a78bfa; filter: drop-shadow(0 0 10px #a78bfa); animation-delay: -0.8s; }
+.nn-node.n4 { fill: #c5ff4a; filter: drop-shadow(0 0 10px #c5ff4a); animation-delay: -1.2s; }
+.nn-node.n5 { fill: #f472b6; filter: drop-shadow(0 0 10px #f472b6); animation-delay: -1.6s; }
+.nn-node.n6 { fill: #22d3ee; filter: drop-shadow(0 0 10px #22d3ee); animation-delay: -2.0s; }
+.nn-node.n7 { fill: #fbbf24; filter: drop-shadow(0 0 10px #fbbf24); animation-delay: -2.4s; }
+.nn-node.n8 { fill: #a78bfa; filter: drop-shadow(0 0 10px #a78bfa); animation-delay: -2.8s; }
+.nn-node.n9 { fill: #c5ff4a; filter: drop-shadow(0 0 12px #c5ff4a); animation-delay: -1.5s; }
+.nn-node.n10 { fill: #f472b6; filter: drop-shadow(0 0 10px #f472b6); animation-delay: -0.7s; }
+.nn-node.n11 { fill: #22d3ee; filter: drop-shadow(0 0 14px #22d3ee); animation-delay: -1.0s; }
+.nn-node.n12 { fill: #a78bfa; filter: drop-shadow(0 0 14px #a78bfa); animation-delay: -2.2s; }
+@keyframes nnPulse {
+    0%, 100% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.4); opacity: 1; }
+}
+
+.badge-brain {
+    color: var(--accent-violet);
+    animation: brainPulse 2.4s ease-in-out infinite;
+}
+@keyframes brainPulse {
+    0%, 100% { filter: drop-shadow(0 0 0 var(--accent-violet)); }
+    50% { filter: drop-shadow(0 0 6px var(--accent-violet)); }
+}
+
+@media (max-width: 768px) {
+    .neural-net { opacity: 0.35; }
+}
