@@ -7,7 +7,8 @@
       "WebSearch",
       "Bash(pdftotext afraz_khan.pdf -)",
       "Bash(grep -n 'hero-robot\\\\|</div>$' index.html)",
-      "Bash(awk -F: '$1>=80 && $1<=200')"
+      "Bash(awk -F: '$1>=80 && $1<=200')",
+      "WebFetch(domain:www.figma.com)"
     ]
   },
   "enableAllProjectMcpServers": true,

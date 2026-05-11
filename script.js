@@ -174,6 +174,69 @@ if (form) {
     });
 }
 
+// Skill oscillator — number rises 0→max with emoji change, dips, rises again. Loops.
+function emojiFor(v) {
+    if (v >= 90) return '🤩';
+    if (v >= 70) return '😎';
+    if (v >= 45) return '🙂';
+    if (v >= 20) return '😶';
+    return '😴';
+}
+document.querySelectorAll('.skill-meter').forEach(meter => {
+    const max = parseInt(meter.dataset.max, 10) || 95;
+    const numEl = meter.querySelector('.skill-num');
+    const emojiEl = meter.querySelector('.skill-emoji');
+    const fillEl = meter.querySelector('.skill-bar-fill');
+    let running = false;
+    let raf = null;
+
+    function animate() {
+        let phase = 0; // 0=rising, 1=hold, 2=falling, 3=hold-low
+        let val = 0;
+        let holdFrames = 0;
+        const tick = () => {
+            if (phase === 0) {
+                val += 0.7 + Math.random() * 0.5;
+                if (val >= max) { val = max; phase = 1; holdFrames = 90; }
+            } else if (phase === 1) {
+                val = max - Math.random() * 1.5;
+                if (--holdFrames <= 0) { phase = 2; }
+            } else if (phase === 2) {
+                val -= 0.9 + Math.random() * 0.6;
+                if (val <= 35) { val = Math.max(val, 30); phase = 3; holdFrames = 30; }
+            } else {
+                val = 30 + Math.random() * 2;
+                if (--holdFrames <= 0) { phase = 0; }
+            }
+            const display = Math.round(val);
+            numEl.textContent = display;
+            fillEl.style.width = display + '%';
+            const newEmoji = emojiFor(display);
+            if (emojiEl.textContent !== newEmoji) {
+                emojiEl.textContent = newEmoji;
+                emojiEl.style.transform = 'scale(1.3) rotate(-8deg)';
+                setTimeout(() => { emojiEl.style.transform = ''; }, 200);
+            }
+            raf = requestAnimationFrame(tick);
+        };
+        tick();
+    }
+
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting && !running) {
+                running = true;
+                animate();
+            } else if (!e.isIntersecting && raf) {
+                cancelAnimationFrame(raf);
+                raf = null;
+                running = false;
+            }
+        });
+    }, { threshold: 0.3 });
+    io.observe(meter);
+});
+
 document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', function(e) {
         const href = this.getAttribute('href');
