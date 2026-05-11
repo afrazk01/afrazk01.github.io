@@ -1848,14 +1848,20 @@ input, textarea {
 /* ============ NEURAL NET HERO BG ============ */
 .neural-net {
     position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(1100px, 95vw);
+    height: auto;
+    max-height: 90%;
     pointer-events: none;
     z-index: 0;
-    opacity: 0.55;
-    mask-image: radial-gradient(ellipse at center, transparent 0%, black 60%, transparent 90%);
-    -webkit-mask-image: radial-gradient(ellipse at center, transparent 0%, black 60%, transparent 90%);
+    opacity: 0.18;
+    mask-image: radial-gradient(ellipse at center, transparent 0%, black 50%, black 70%, transparent 95%);
+    -webkit-mask-image: radial-gradient(ellipse at center, transparent 0%, black 50%, black 70%, transparent 95%);
+}
+@media (max-width: 768px) {
+    .neural-net { opacity: 0.10; width: 130vw; }
 }
 .nn-edges line {
     stroke-dasharray: 4 4;
@@ -1899,6 +1905,103 @@ input, textarea {
     50% { filter: drop-shadow(0 0 6px var(--accent-violet)); }
 }
 
-@media (max-width: 768px) {
-    .neural-net { opacity: 0.35; }
+/* ============ PROJECT ICONS ============ */
+
+.project-icon { width: 80% !important; max-width: 140px; height: auto !important; }
+
+/* Shield (Eligibility) */
+.icon-shield .shield-orbit { animation: rotate 18s linear infinite; transform-origin: 40px 40px; }
+.icon-shield .shield-check { stroke-dasharray: 50; stroke-dashoffset: 50; animation: drawIn 2s ease-out infinite alternate; }
+.icon-shield .shield-body { filter: drop-shadow(0 0 6px currentColor); }
+@keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes drawIn {
+    0%, 30% { stroke-dashoffset: 50; }
+    70%, 100% { stroke-dashoffset: 0; }
+}
+
+/* Soundwave (Sadiq Scribe) */
+.icon-wave .wb { stroke-linecap: round; transform-box: fill-box; transform-origin: center; animation: wave 1.2s ease-in-out infinite; }
+.icon-wave .wb.b1 { animation-delay: 0s; }
+.icon-wave .wb.b2 { animation-delay: 0.08s; }
+.icon-wave .wb.b3 { animation-delay: 0.16s; }
+.icon-wave .wb.b4 { animation-delay: 0.24s; }
+.icon-wave .wb.b5 { animation-delay: 0.32s; }
+.icon-wave .wb.b6 { animation-delay: 0.4s; }
+.icon-wave .wb.b7 { animation-delay: 0.48s; }
+.icon-wave .wb.b8 { animation-delay: 0.56s; }
+.icon-wave .wb.b9 { animation-delay: 0.64s; }
+.icon-wave .wb.b10 { animation-delay: 0.72s; }
+.icon-wave .wb.b11 { animation-delay: 0.8s; }
+@keyframes wave {
+    0%, 100% { transform: scaleY(0.4); }
+    50% { transform: scaleY(8); }
+}
+.icon-wave .steth path,
+.icon-wave .steth circle { stroke: currentColor; }
+
+/* SMR (EKG + chart) */
+.icon-smr .ekg-line { animation: ekgDraw 2.4s ease-in-out infinite; }
+@keyframes ekgDraw {
+    0% { stroke-dashoffset: 100; }
+    60%, 100% { stroke-dashoffset: 0; }
+}
+.icon-smr .cite-bubble { animation: bubblePop 3s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes bubblePop {
+    0%, 70%, 100% { opacity: 0; transform: translate(64px, 36px) scale(0.7); }
+    80%, 95% { opacity: 1; transform: translate(64px, 36px) scale(1); }
+}
+
+/* Knowledge graph (Intellectus) */
+.icon-graph .kg-core { animation: kgPulse 2s ease-in-out infinite; transform-box: fill-box; transform-origin: center; filter: drop-shadow(0 0 6px currentColor); }
+.icon-graph .kg-n { animation: kgPulse 2.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.icon-graph .kg1 { animation-delay: -0.2s; fill: #c5ff4a; }
+.icon-graph .kg2 { animation-delay: -0.6s; fill: #22d3ee; }
+.icon-graph .kg3 { animation-delay: -1.0s; fill: #f472b6; }
+.icon-graph .kg4 { animation-delay: -1.4s; fill: #fbbf24; }
+.icon-graph .kg5 { animation-delay: -1.8s; fill: #a78bfa; }
+.icon-graph .kg6 { animation-delay: -2.2s; fill: #c5ff4a; }
+.icon-graph .kg-edges { animation: dashFlow 4s linear infinite; }
+@keyframes kgPulse {
+    0%, 100% { transform: scale(0.9); opacity: 0.7; }
+    50% { transform: scale(1.25); opacity: 1; }
+}
+@keyframes dashFlow {
+    from { stroke-dashoffset: 0; }
+    to { stroke-dashoffset: -20; }
+}
+
+/* KYC (ID card + scan) */
+.icon-kyc .kyc-scan {
+    stroke: #22d3ee;
+    filter: drop-shadow(0 0 6px #22d3ee);
+    animation: kycScan 2.4s ease-in-out infinite;
+}
+@keyframes kycScan {
+    0%, 100% { transform: translateY(-20px); opacity: 0; }
+    20%, 80% { opacity: 1; }
+    50% { transform: translateY(20px); opacity: 1; }
+}
+.icon-kyc .kyc-bracket { color: var(--accent); }
+
+/* Doc Detector (bbox) */
+.icon-detect .bbox { animation: bboxPop 3s ease-in-out infinite; }
+.icon-detect .bb2 { animation-delay: -1.5s; }
+@keyframes bboxPop {
+    0%, 100% { opacity: 0; }
+    20%, 80% { opacity: 1; }
+}
+
+/* Q&A (chat bubbles) */
+.icon-qa .qa-a { opacity: 0; animation: qaShow 3s ease-in-out infinite; }
+.icon-qa .qa-bubble { opacity: 0; animation: qaShow 3s ease-in-out infinite; }
+@keyframes qaShow {
+    0%, 30% { opacity: 0; transform: translateX(-6px); }
+    50%, 100% { opacity: 1; transform: translateX(0); }
+}
+.icon-qa .qa-pulse circle { animation: dotPulse 1.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.icon-qa .qa-pulse circle:nth-child(2) { animation-delay: 0.2s; }
+.icon-qa .qa-pulse circle:nth-child(3) { animation-delay: 0.4s; }
+@keyframes dotPulse {
+    0%, 100% { opacity: 0.3; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.3); }
 }
