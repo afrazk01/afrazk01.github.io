@@ -1,19 +1,30 @@
 :root {
-    --bg: #0a0a0a;
-    --bg-elev: #111111;
-    --bg-card: #141414;
-    --bg-card-hover: #181818;
-    --border: #1f1f1f;
-    --border-light: #2a2a2a;
-    --border-hover: #3a3a3a;
-    --text: #ededed;
-    --text-secondary: #b8b8b8;
-    --text-muted: #8b8b8b;
-    --text-dim: #525252;
+    --bg: #08080b;
+    --bg-elev: #0f0f12;
+    --bg-card: #111114;
+    --bg-card-hover: #16161a;
+    --border: #1d1d22;
+    --border-light: #28282f;
+    --border-hover: #3a3a44;
+    --text: #f4f4f5;
+    --text-secondary: #c4c4cc;
+    --text-muted: #8b8b94;
+    --text-dim: #555560;
     --accent: #c5ff4a;
     --accent-2: #84cc16;
+    --accent-violet: #a78bfa;
+    --accent-cyan: #22d3ee;
+    --accent-pink: #f472b6;
+    --accent-amber: #fbbf24;
     --accent-glow: rgba(197, 255, 74, 0.2);
+    --violet-glow: rgba(167, 139, 250, 0.2);
+    --cyan-glow: rgba(34, 211, 238, 0.2);
+    --pink-glow: rgba(244, 114, 182, 0.2);
+    --amber-glow: rgba(251, 191, 36, 0.2);
     --gradient: linear-gradient(135deg, #d9f99d 0%, #84cc16 100%);
+    --gradient-spectrum: linear-gradient(135deg, #c5ff4a 0%, #22d3ee 50%, #a78bfa 100%);
+    --gradient-warm: linear-gradient(135deg, #fbbf24 0%, #f472b6 100%);
+    --gradient-cool: linear-gradient(135deg, #22d3ee 0%, #a78bfa 100%);
     --gradient-soft: linear-gradient(135deg, rgba(197, 255, 74, 0.1) 0%, rgba(132, 204, 22, 0.1) 100%);
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-display: 'Space Grotesk', sans-serif;
@@ -149,10 +160,25 @@ input, textarea {
 .bg-orb-2 {
     width: 420px;
     height: 420px;
-    background: radial-gradient(circle, #65a30d 0%, transparent 70%);
+    background: radial-gradient(circle, #a78bfa 0%, transparent 70%);
     bottom: -100px;
     left: -120px;
     animation-delay: -12s;
+}
+.bg-orb-3 {
+    position: fixed;
+    width: 360px;
+    height: 360px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #22d3ee 0%, transparent 70%);
+    filter: blur(90px);
+    opacity: 0.2;
+    top: 40%;
+    left: 60%;
+    pointer-events: none;
+    z-index: 0;
+    will-change: transform;
+    animation: orbFloat 28s ease-in-out -8s infinite;
 }
 @keyframes orbFloat {
     0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
@@ -1671,3 +1697,150 @@ input, textarea {
         display: none;
     }
 }
+
+/* ============ MULTI-ACCENT + RAIL + BENTO ============ */
+
+/* Fixed left social rail (Brittany Chiang style) */
+.social-rail {
+    position: fixed;
+    left: 32px;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    z-index: 50;
+}
+.social-rail a {
+    color: var(--text-muted);
+    transition: all var(--transition);
+    display: inline-flex;
+}
+.social-rail a:hover {
+    color: var(--accent);
+    transform: translateY(-4px);
+}
+.social-rail a:nth-child(1):hover { color: var(--text); }
+.social-rail a:nth-child(2):hover { color: var(--accent-cyan); }
+.social-rail a:nth-child(3):hover { color: var(--accent); }
+.social-rail a:nth-child(4):hover { color: var(--accent-violet); }
+.rail-line {
+    width: 1px;
+    height: 100px;
+    background: linear-gradient(to bottom, var(--border-light), transparent);
+}
+@media (max-width: 1100px) {
+    .social-rail { display: none; }
+}
+
+/* Project card per-card accent cycle */
+.projects-grid .project-card:nth-child(6n+1) { --card-accent: #c5ff4a; --card-glow: rgba(197,255,74,0.18); }
+.projects-grid .project-card:nth-child(6n+2) { --card-accent: #a78bfa; --card-glow: rgba(167,139,250,0.20); }
+.projects-grid .project-card:nth-child(6n+3) { --card-accent: #22d3ee; --card-glow: rgba(34,211,238,0.20); }
+.projects-grid .project-card:nth-child(6n+4) { --card-accent: #f472b6; --card-glow: rgba(244,114,182,0.18); }
+.projects-grid .project-card:nth-child(6n+5) { --card-accent: #fbbf24; --card-glow: rgba(251,191,36,0.18); }
+.projects-grid .project-card:nth-child(6n+6) { --card-accent: #84cc16; --card-glow: rgba(132,204,22,0.20); }
+
+.project-card .project-icon { color: var(--card-accent, var(--accent)); }
+.project-card .project-number { color: var(--card-accent, var(--accent)); }
+.project-card .project-visual::before { background: radial-gradient(circle, var(--card-glow, var(--accent-glow)) 0%, transparent 70%); }
+.project-card:hover { box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 60px var(--card-glow, var(--accent-glow)); }
+.project-card:hover .project-title {
+    color: var(--card-accent, var(--accent));
+    background: none;
+    -webkit-text-fill-color: currentColor;
+}
+.project-card::after {
+    background: linear-gradient(135deg, transparent 30%, var(--card-glow, rgba(197,255,74,0.4)) 50%, transparent 70%) !important;
+}
+
+/* Skill card per-card accent */
+.skills-grid .skill-card:nth-child(6n+1) { --card-accent: #c5ff4a; --card-tint: rgba(197,255,74,0.10); }
+.skills-grid .skill-card:nth-child(6n+2) { --card-accent: #a78bfa; --card-tint: rgba(167,139,250,0.12); }
+.skills-grid .skill-card:nth-child(6n+3) { --card-accent: #22d3ee; --card-tint: rgba(34,211,238,0.12); }
+.skills-grid .skill-card:nth-child(6n+4) { --card-accent: #f472b6; --card-tint: rgba(244,114,182,0.10); }
+.skills-grid .skill-card:nth-child(6n+5) { --card-accent: #fbbf24; --card-tint: rgba(251,191,36,0.10); }
+.skills-grid .skill-card:nth-child(6n+6) { --card-accent: #84cc16; --card-tint: rgba(132,204,22,0.12); }
+.skill-card .skill-icon {
+    background: var(--card-tint, var(--accent-glow));
+    border-color: var(--card-accent, var(--accent));
+    color: var(--card-accent, var(--accent));
+}
+.skill-card::before {
+    background: radial-gradient(circle, var(--card-tint, var(--accent-glow)) 0%, transparent 50%) !important;
+}
+.skill-card:hover h3 { color: var(--card-accent, var(--accent)); }
+
+/* Bento layout — skills grid with size variation */
+.skills-grid {
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: minmax(220px, auto);
+    gap: 20px;
+}
+.skills-grid .skill-card:nth-child(1) { grid-column: span 3; }
+.skills-grid .skill-card:nth-child(2) { grid-column: span 3; }
+.skills-grid .skill-card:nth-child(3) { grid-column: span 2; }
+.skills-grid .skill-card:nth-child(4) { grid-column: span 2; }
+.skills-grid .skill-card:nth-child(5) { grid-column: span 2; }
+.skills-grid .skill-card:nth-child(6) { grid-column: span 6; }
+@media (max-width: 968px) {
+    .skills-grid { grid-template-columns: repeat(2, 1fr); }
+    .skills-grid .skill-card:nth-child(n) { grid-column: span 1; }
+    .skills-grid .skill-card:nth-child(1),
+    .skills-grid .skill-card:nth-child(6) { grid-column: span 2; }
+}
+@media (max-width: 560px) {
+    .skills-grid { grid-template-columns: 1fr; }
+    .skills-grid .skill-card:nth-child(n) { grid-column: span 1 !important; }
+}
+
+/* Timeline dots: cycle colors */
+.timeline-item:nth-child(6n+1) .timeline-dot { border-color: #c5ff4a; box-shadow: 0 0 0 4px var(--bg), 0 0 20px #c5ff4a; }
+.timeline-item:nth-child(6n+2) .timeline-dot { border-color: #a78bfa; box-shadow: 0 0 0 4px var(--bg), 0 0 20px #a78bfa; }
+.timeline-item:nth-child(6n+3) .timeline-dot { border-color: #22d3ee; box-shadow: 0 0 0 4px var(--bg), 0 0 20px #22d3ee; }
+.timeline-item:nth-child(6n+4) .timeline-dot { border-color: #f472b6; box-shadow: 0 0 0 4px var(--bg), 0 0 20px #f472b6; }
+.timeline-item:nth-child(6n+5) .timeline-dot { border-color: #fbbf24; box-shadow: 0 0 0 4px var(--bg), 0 0 20px #fbbf24; }
+.timeline-item:nth-child(6n+6) .timeline-dot { border-color: #84cc16; box-shadow: 0 0 0 4px var(--bg), 0 0 20px #84cc16; }
+.timeline::before {
+    background: linear-gradient(to bottom, #c5ff4a 0%, #a78bfa 30%, #22d3ee 60%, #f472b6 100%);
+    opacity: 0.4;
+    width: 1.5px;
+}
+
+/* About feature icons cycle */
+.about-features .feature:nth-child(1) .feature-icon { color: var(--accent); background: var(--accent-glow); }
+.about-features .feature:nth-child(2) .feature-icon { color: var(--accent-violet); background: var(--violet-glow); }
+.about-features .feature:nth-child(3) .feature-icon { color: var(--accent-cyan); background: var(--cyan-glow); }
+.about-features .feature:nth-child(4) .feature-icon { color: var(--accent-pink); background: var(--pink-glow); }
+.about-features .feature:nth-child(1):hover { border-color: var(--accent); }
+.about-features .feature:nth-child(2):hover { border-color: var(--accent-violet); }
+.about-features .feature:nth-child(3):hover { border-color: var(--accent-cyan); }
+.about-features .feature:nth-child(4):hover { border-color: var(--accent-pink); }
+
+/* Section tag rotating colors */
+.about .section-tag { background: var(--accent-glow); border-color: var(--accent); color: var(--accent); }
+.experience .section-tag { background: var(--violet-glow); border-color: var(--accent-violet); color: var(--accent-violet); }
+.projects .section-tag { background: var(--cyan-glow); border-color: var(--accent-cyan); color: var(--accent-cyan); }
+.skills .section-tag { background: var(--amber-glow); border-color: var(--accent-amber); color: var(--accent-amber); }
+.contact .section-tag { background: var(--pink-glow); border-color: var(--accent-pink); color: var(--accent-pink); }
+
+/* Section title gradient varies per section */
+.experience .gradient-text { background: var(--gradient-cool); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.projects .gradient-text { background: var(--gradient-spectrum); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.skills .gradient-text { background: var(--gradient-warm); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.contact .gradient-text { background: linear-gradient(135deg, #f472b6 0%, #a78bfa 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+
+/* Featured hero word swap with spectrum gradient */
+#typewriter { background: var(--gradient-spectrum); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+
+/* Cursor blink color */
+.cursor-blink { color: var(--accent-violet); }
+
+/* Polish: timeline cards left-border accent on hover */
+.timeline-card { border-left: 2px solid transparent; transition: all var(--transition); }
+.timeline-item:nth-child(6n+1) .timeline-card:hover { border-left-color: #c5ff4a; }
+.timeline-item:nth-child(6n+2) .timeline-card:hover { border-left-color: #a78bfa; }
+.timeline-item:nth-child(6n+3) .timeline-card:hover { border-left-color: #22d3ee; }
+.timeline-item:nth-child(6n+4) .timeline-card:hover { border-left-color: #f472b6; }
+.timeline-item:nth-child(6n+5) .timeline-card:hover { border-left-color: #fbbf24; }
+.timeline-item:nth-child(6n+6) .timeline-card:hover { border-left-color: #84cc16; }

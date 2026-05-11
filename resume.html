@@ -288,10 +288,37 @@
         }
 
         @media print {
-            body { background: #fff; }
-            .page-actions { display: none; }
+            @page { size: A4; margin: 10mm 12mm; }
+            body { background: #fff; font-size: 10.5pt; line-height: 1.45; }
+            .page-actions { display: none !important; }
             .resume-wrap { margin: 0; padding: 0; max-width: 100%; }
-            .resume { border: none; box-shadow: none; padding: 20mm; border-radius: 0; }
+            .resume {
+                border: none;
+                box-shadow: none;
+                padding: 0;
+                border-radius: 0;
+                max-width: 100%;
+            }
+            .resume-header { gap: 18px; padding-bottom: 14px; margin-bottom: 16px; border-bottom-width: 1.5px; }
+            .avatar { width: 64px; height: 64px; border-width: 1.5px; }
+            .resume-name { font-size: 22pt; margin-bottom: 2px; }
+            .resume-title { font-size: 9.5pt; margin-bottom: 6px; letter-spacing: 0.1em; }
+            .resume-contact { font-size: 9pt; gap: 3px 14px; }
+            .resume-section { margin-bottom: 12px; page-break-inside: avoid; }
+            .resume-section-title { font-size: 10pt; padding-bottom: 4px; margin-bottom: 8px; letter-spacing: 0.12em; }
+            .summary { font-size: 9.5pt; line-height: 1.5; }
+            .entry { margin-bottom: 10px; page-break-inside: avoid; }
+            .entry-title { font-size: 11pt; }
+            .entry-date { font-size: 8.5pt; }
+            .entry-company { font-size: 9.5pt; margin-bottom: 4px; }
+            .entry-bullets li { font-size: 9.5pt; line-height: 1.45; margin-bottom: 2px; padding-left: 12px; }
+            .entry-bullets li::before { top: 7px; width: 3.5px; height: 3.5px; left: 1px; }
+            .entry-tech { gap: 4px; margin-top: 4px; }
+            .entry-tech span { padding: 1px 7px; font-size: 8pt; }
+            .skills-grid { gap: 4px 14px; grid-template-columns: 140px 1fr; }
+            .skill-label, .skill-list { font-size: 9.5pt; }
+            .projects-list .entry-subtitle { font-size: 9pt; margin-bottom: 3px; }
+            a { color: var(--ink); }
         }
     </style>
 </head>

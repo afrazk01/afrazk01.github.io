@@ -3,7 +3,9 @@
     "allow": [
       "Bash(pdfinfo afraz_khan.pdf)",
       "Bash(python3 *)",
-      "Bash(pip install *)"
+      "Bash(pip install *)",
+      "WebSearch",
+      "Bash(pdftotext afraz_khan.pdf -)"
     ]
   },
   "enableAllProjectMcpServers": true,
