@@ -88,6 +88,101 @@
     <section id="home" class="hero">
         <div class="hero-bg-glow"></div>
 
+        <div class="hero-robot" aria-hidden="true">
+            <div class="robot-bubble">
+                <span class="bubble-word w1">Hi! 👋</span>
+                <span class="bubble-word w2">Let's build.</span>
+                <span class="bubble-word w3">Hire me?</span>
+            </div>
+
+            <div class="robot-3d" id="robot3d" data-spline-src="https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode">
+                <div class="robot-loading">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+
+            <svg class="robot-svg robot-fallback" width="220" height="280" viewBox="0 0 220 280" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#2a2a32"/>
+                        <stop offset="50%" stop-color="#1a1a20"/>
+                        <stop offset="100%" stop-color="#0c0c10"/>
+                    </linearGradient>
+                    <linearGradient id="headGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#3a3a44"/>
+                        <stop offset="50%" stop-color="#22222a"/>
+                        <stop offset="100%" stop-color="#101015"/>
+                    </linearGradient>
+                    <radialGradient id="visorGrad" cx="50%" cy="40%" r="60%">
+                        <stop offset="0%" stop-color="#0d1a22"/>
+                        <stop offset="100%" stop-color="#000"/>
+                    </radialGradient>
+                    <radialGradient id="eyeGrad" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#a5f3fc"/>
+                        <stop offset="60%" stop-color="#22d3ee"/>
+                        <stop offset="100%" stop-color="#0891b2"/>
+                    </radialGradient>
+                </defs>
+
+                <ellipse class="robot-shadow" cx="110" cy="268" rx="70" ry="6" fill="#000" opacity="0.5"/>
+
+                <g class="robot-body">
+                    <rect x="58" y="160" width="104" height="90" rx="18" fill="url(#bodyGrad)" stroke="#3a3a44" stroke-width="1.5"/>
+                    <rect x="78" y="180" width="64" height="38" rx="6" fill="#0a0a0e" stroke="#22d3ee" stroke-width="1" opacity="0.9"/>
+                    <circle class="chest-dot d1" cx="90" cy="199" r="2.5" fill="#22d3ee"/>
+                    <circle class="chest-dot d2" cx="110" cy="199" r="2.5" fill="#c5ff4a"/>
+                    <circle class="chest-dot d3" cx="130" cy="199" r="2.5" fill="#a78bfa"/>
+                    <line x1="84" y1="208" x2="136" y2="208" stroke="#444" stroke-width="0.8" opacity="0.6"/>
+                    <line x1="84" y1="212" x2="128" y2="212" stroke="#444" stroke-width="0.8" opacity="0.4"/>
+
+                    <rect x="84" y="234" width="22" height="6" rx="2" fill="#84cc16" opacity="0.9"/>
+                    <rect x="114" y="234" width="14" height="6" rx="2" fill="#fbbf24" opacity="0.7"/>
+                </g>
+
+                <g class="robot-arm-left">
+                    <rect x="42" y="172" width="14" height="48" rx="7" fill="url(#bodyGrad)" stroke="#3a3a44" stroke-width="1"/>
+                    <circle cx="49" cy="225" r="9" fill="#1a1a20" stroke="#3a3a44" stroke-width="1.2"/>
+                </g>
+
+                <g class="robot-arm-right">
+                    <g class="arm-wave">
+                        <rect x="164" y="120" width="14" height="48" rx="7" fill="url(#bodyGrad)" stroke="#3a3a44" stroke-width="1"/>
+                        <circle cx="171" cy="115" r="11" fill="#1a1a20" stroke="#22d3ee" stroke-width="1.2"/>
+                        <circle cx="171" cy="115" r="3" fill="#22d3ee" opacity="0.8"/>
+                    </g>
+                </g>
+
+                <g class="robot-head">
+                    <line x1="110" y1="48" x2="110" y2="30" stroke="#3a3a44" stroke-width="2"/>
+                    <circle class="antenna-light" cx="110" cy="26" r="5" fill="#c5ff4a"/>
+
+                    <rect x="62" y="48" width="96" height="100" rx="22" fill="url(#headGrad)" stroke="#3a3a44" stroke-width="1.5"/>
+
+                    <rect x="74" y="68" width="72" height="50" rx="14" fill="url(#visorGrad)" stroke="#22d3ee" stroke-width="1" opacity="0.95"/>
+
+                    <g class="robot-eyes">
+                        <circle class="eye eye-l" cx="94" cy="93" r="7" fill="url(#eyeGrad)"/>
+                        <circle class="eye eye-r" cx="126" cy="93" r="7" fill="url(#eyeGrad)"/>
+                        <circle cx="92" cy="91" r="2" fill="#fff" opacity="0.9"/>
+                        <circle cx="124" cy="91" r="2" fill="#fff" opacity="0.9"/>
+                    </g>
+
+                    <g class="robot-mouth">
+                        <rect x="92" y="128" width="36" height="6" rx="3" fill="#0c0c10" stroke="#22d3ee" stroke-width="0.6"/>
+                        <rect class="mouth-bar m1" x="96" y="129" width="3" height="4" fill="#22d3ee"/>
+                        <rect class="mouth-bar m2" x="102" y="129" width="3" height="4" fill="#22d3ee"/>
+                        <rect class="mouth-bar m3" x="108" y="129" width="3" height="4" fill="#22d3ee"/>
+                        <rect class="mouth-bar m4" x="114" y="129" width="3" height="4" fill="#22d3ee"/>
+                        <rect class="mouth-bar m5" x="120" y="129" width="3" height="4" fill="#22d3ee"/>
+                    </g>
+
+                    <circle cx="58" cy="98" r="4" fill="#1a1a20" stroke="#3a3a44" stroke-width="1"/>
+                    <circle cx="162" cy="98" r="4" fill="#1a1a20" stroke="#3a3a44" stroke-width="1"/>
+                </g>
+            </svg>
+        </div>
+
+
         <svg class="neural-net" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <defs>
                 <radialGradient id="nodeGrad" cx="50%" cy="50%" r="50%">

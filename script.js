@@ -174,6 +174,58 @@ if (form) {
     });
 }
 
+// Lazy-mount Spline 3D robot (only when hero visible + idle)
+(function mountSpline() {
+    const slot = document.getElementById('robot3d');
+    if (!slot) return;
+    const src = slot.dataset.splineSrc;
+    if (!src) return;
+
+    const heroSection = document.getElementById('home');
+    const fallback = document.querySelector('.robot-fallback');
+    let loaded = false;
+
+    function load() {
+        if (loaded) return;
+        loaded = true;
+        const startLoad = () => {
+            const s = document.createElement('script');
+            s.type = 'module';
+            s.src = 'https://unpkg.com/@splinetool/viewer@1.9.48/build/spline-viewer.js';
+            s.onload = () => {
+                const viewer = document.createElement('spline-viewer');
+                viewer.setAttribute('url', src);
+                viewer.setAttribute('loading-anim-type', 'none');
+                viewer.style.cssText = 'width:100%;height:100%;background:transparent;';
+                viewer.addEventListener('load', () => {
+                    slot.classList.add('loaded');
+                    if (fallback) fallback.style.display = 'none';
+                });
+                viewer.addEventListener('error', () => {
+                    slot.style.display = 'none';
+                    if (fallback) fallback.style.display = '';
+                });
+                slot.appendChild(viewer);
+            };
+            s.onerror = () => {
+                slot.style.display = 'none';
+                if (fallback) fallback.style.display = '';
+            };
+            document.head.appendChild(s);
+        };
+        if ('requestIdleCallback' in window) requestIdleCallback(startLoad, { timeout: 1500 });
+        else setTimeout(startLoad, 600);
+    }
+
+    if (window.matchMedia('(max-width: 1200px)').matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { load(); io.disconnect(); } });
+    }, { threshold: 0.1 });
+    io.observe(heroSection || slot);
+})();
+
 document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', function(e) {
         const href = this.getAttribute('href');
