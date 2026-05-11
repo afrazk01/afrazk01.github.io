@@ -8,12 +8,12 @@
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
 
-    <link rel="icon" type="image/jpeg" href="1734807886656.jpeg">
-    <link rel="apple-touch-icon" href="1734807886656.jpeg">
+    <link rel="icon" type="image/webp" href="avatar.webp">
+    <link rel="apple-touch-icon" href="avatar.jpg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -304,12 +304,12 @@
                 </svg>
                 Back to Portfolio
             </a>
-            <button type="button" class="download-btn" id="downloadBtn">
+            <a href="afraz_khan.pdf" download="Afraz_Khan_Resume.pdf" class="download-btn" id="downloadBtn">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
                 </svg>
                 Download PDF
-            </button>
+            </a>
         </div>
     </div>
 
@@ -317,7 +317,10 @@
         <article class="resume" id="resume">
             <header class="resume-header">
                 <div class="avatar">
-                    <img src="1734807886656.jpeg" alt="Afraz Khan" width="92" height="92">
+                    <picture>
+                        <source srcset="avatar.webp" type="image/webp">
+                        <img src="avatar.jpg" alt="Afraz Khan" width="92" height="92" decoding="async">
+                    </picture>
                 </div>
                 <div class="header-text">
                     <h1 class="resume-name">Afraz Khan</h1>
@@ -551,50 +554,15 @@
         </article>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.2/dist/html2pdf.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
-        (function () {
-            const btn = document.getElementById('downloadBtn');
-            const resume = document.getElementById('resume');
-            if (!btn || !resume) return;
-
-            function download() {
-                if (typeof html2pdf === 'undefined') {
-                    window.print();
-                    return;
-                }
-                const originalLabel = btn.innerHTML;
-                btn.disabled = true;
-                btn.innerHTML = 'Generating PDF...';
-
-                const opt = {
-                    margin: [10, 10, 10, 10],
-                    filename: 'Afraz_Khan_Resume.pdf',
-                    image: { type: 'jpeg', quality: 0.98 },
-                    html2canvas: {
-                        scale: 2,
-                        useCORS: true,
-                        backgroundColor: '#ffffff',
-                        windowWidth: resume.scrollWidth
-                    },
-                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-                    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
-                };
-
-                html2pdf().set(opt).from(resume).save()
-                    .catch(function () { window.print(); })
-                    .finally(function () {
-                        btn.disabled = false;
-                        btn.innerHTML = originalLabel;
-                    });
-            }
-
-            btn.addEventListener('click', download);
-
-            if (window.location.hash === '#download') {
-                setTimeout(download, 400);
-            }
-        })();
+        if (window.location.hash === '#download') {
+            const link = document.createElement('a');
+            link.href = 'afraz_khan.pdf';
+            link.download = 'Afraz_Khan_Resume.pdf';
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+        }
     </script>
 </body>
 </html>
